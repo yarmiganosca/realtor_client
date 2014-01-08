@@ -15,9 +15,8 @@ module ActionDispatch
     class Mapper
       module Base
         def mount_client client
-          get "#{client}", to: "client_apps#show", defaults: {app_name: client}
-          get "#{client}/config.js", to: redirect("#{RealtorClient.service_url}/#{client}/config.js")
-          get "#{client}/*path", to: redirect("#{RealtorClient.service_url}/#{client}/#{path}")
+          get "#{client}", to: "realtor_client/client_apps#show", defaults: {app_name: client}
+          get "#{client}/*path.js", to: redirect("#{RealtorClient.service_url}/#{client}/%{:path}.js")
         end
       end
     end
